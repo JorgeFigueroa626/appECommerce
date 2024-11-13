@@ -26,10 +26,10 @@ export class ViewProductDetailComponent implements OnInit{
 
 
   ngOnInit(): void {
-  this.getProductDetailsProdutById()
+  this.getProductDetailsProductById()
   }
 
-  getProductDetailsProdutById(){
+  getProductDetailsProductById(){
     this.customerService.getProductDetailById(this.productId).subscribe(
       (resp) => {
         this.product = resp.productDto;
@@ -38,7 +38,7 @@ export class ViewProductDetailComponent implements OnInit{
         this.FAQS = resp.faqDtoList;
 
         resp.reviewDtoList.forEach(element => {
-          element.processedImg = 'data:image/jpg;base64,' + element.byteImg;
+          element.processedImg = 'data:image/jpg;base64,' + element.returnedImg;
           this.reviews.push(element);
         });
       }

@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin.service';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-category-manager',
+  templateUrl: './category-manager.component.html',
+  styleUrls: ['./category-manager.component.scss']
 })
-export class CategoryComponent implements OnInit{
+export class CategoryManagerComponent {
+
   
+
   categoryForm!:FormGroup;
   categories:any[]=[];
 
@@ -19,7 +21,8 @@ export class CategoryComponent implements OnInit{
     private _fb:FormBuilder,
     private _router: Router,
     private _categoryService: CategoryService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _dialog: MatDialogRef<CategoryManagerComponent>
   ){}
 
   ngOnInit(): void {
@@ -30,6 +33,10 @@ export class CategoryComponent implements OnInit{
     this.getAllCategories();
   }
 
+  closeDialog(){
+    this._dialog.close()
+  }
+
   addCategory(){
     if (this.categoryForm.valid) {
       this._categoryService.addCategory(this.categoryForm.value).subscribe(
@@ -38,7 +45,8 @@ export class CategoryComponent implements OnInit{
             this._snackBar.open('Category Create Successfully!', 'OK', {
               duration: 3000
             })
-            this._router.navigateByUrl('/admin/dashboard')
+            this.closeDialog();
+            this._router.navigateByUrl('/admin/category-list')
           } else {
             this._snackBar.open(data.message, 'Close', {
               duration: 3000, panelClass: 'error-snackbar'
@@ -91,5 +99,5 @@ export class CategoryComponent implements OnInit{
     )
   }
 
-
+  
 }

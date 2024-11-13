@@ -19,10 +19,10 @@ export class ViewOrderedProductsComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.getOrderedProdcutsDetailsOrderId();
+    this.getOrderedProductsDetailsOrderId();
   }
 
-  getOrderedProdcutsDetailsOrderId(){
+  getOrderedProductsDetailsOrderId(){
     this._customerService.getOrderedProducts(this.orderId).subscribe(
       (resp) => {
         resp.productDtoList.forEach(element => {

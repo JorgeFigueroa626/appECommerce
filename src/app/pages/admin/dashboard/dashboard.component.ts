@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from 'src/app/services/admin.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private _adminService: AdminService,
+    private _productService: ProductService,
     private _fb: FormBuilder,
     private _snackBar: MatSnackBar
   ) {}
@@ -29,7 +31,7 @@ export class DashboardComponent implements OnInit {
   ngSubmit() {
     this.products = [];
     const title = this.searchProductForm.get('title')!.value;
-    this._adminService.getAllProductsByName(title).subscribe((data) => {
+    this._productService.getAllProductsByName(title).subscribe((data) => {
       data.forEach((element:any) => {
         element.processedImg = 'data:image/jpg;base64,' + element.byteImg;
         this.products.push(element);
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
 
   getAllProducts() {
     this.products = [];
-    this._adminService.getAllProducts().subscribe((data) => {
+    this._productService.getAllProducts().subscribe((data) => {
       data.forEach((element) => {
         element.processedImg = 'data:image/jpg;base64,' + element.byteImg;
         this.products.push(element);
@@ -49,7 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteByProductId(productId: number) {
-    this._adminService.deleteByProductId(productId).subscribe((data) => {
+    this._productService.deleteByProductId(productId).subscribe((data) => {
       if (data?.body == null) {
         this._snackBar.open('Product delete Successfully!', 'Ok', {
           duration: 3000,

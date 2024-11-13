@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-post-product-faq',
@@ -18,6 +19,7 @@ export class PostProductFaqComponent implements OnInit{
     private _route: ActivatedRoute,
     private _router:Router,
     private _adminService:AdminService,
+    private _productService: ProductService,
     private _snackBar:MatSnackBar,
     private _fb: FormBuilder
   ){}
@@ -30,7 +32,7 @@ export class PostProductFaqComponent implements OnInit{
   }
 
   postFaq(){
-    this._adminService.createFaq(this.productId, this.faqForm.value).subscribe(
+    this._productService.createFaq(this.productId, this.faqForm.value).subscribe(
       (resp) =>{
         if (resp.id != null) {
           this._snackBar.open('FAQ Posted Successfully', 'OK', {duration: 3000});

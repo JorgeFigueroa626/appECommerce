@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +15,9 @@ export class ProductComponent implements OnInit{
 
 
   productForm!:FormGroup;
-  categorys: any = [];
+  categories: any = [];
+  products: any = [];
+  product:any;
   selectFile:File | null;
   imagePreview: string | ArrayBuffer | null;
 
@@ -21,16 +25,18 @@ export class ProductComponent implements OnInit{
     private _fb:FormBuilder,
     private _router:Router,
     private _snackBar:MatSnackBar,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private _productService: ProductService,
+    private _categoryService: CategoryService,
 
   ){}
 
   onFileSelected(event:any){
     this.selectFile = event.target.files[0];
-    this.previewImagen();
+    this.previewImage();
   }
 
-  previewImagen(){
+  previewImage(){
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;
@@ -46,13 +52,14 @@ export class ProductComponent implements OnInit{
       description: [null, [Validators.required]]
     });
 
-    this.getAllCategorys();
+    this.getAllCategories();
+    this.getAllProducts();
   }
 
-  getAllCategorys(){
-    this._adminService.getAllCategorys().subscribe(
+  getAllCategories(){
+    this._categoryService.getAllCategories().subscribe(
       (data)=> {
-        this.categorys = data;
+        this.categories = data;
       }
     )
   }
@@ -66,7 +73,7 @@ export class ProductComponent implements OnInit{
       formData.append('description', this.productForm.get('description').value);
       formData.append('price', this.productForm.get('price').value);
 
-      this._adminService.addProduct(formData).subscribe(
+      this._productService.addProduct(formData).subscribe(
         (data) => {
           if (data.id != null) {
             this._snackBar.open('Product Posted Successfully', 'OK',{duration: 3000});
@@ -82,6 +89,33 @@ export class ProductComponent implements OnInit{
         this.productForm.controls[i].updateValueAndValidity();
       }
     }
+  }
+
+  getAllProducts(){
+    this._productService.getAllProducts().subscribe(
+      (resp) =>{
+        resp.forEach((element) => {
+          element.processedImg = 'data:image/jpg;base64,' + element.byteImg;
+          this.products.push(element);
+          //console.log(element);
+        });
+        this.products = resp;
+        console.log(this.products);
+        
+      }
+    )
+  }
+
+  deleteByProductId(productId:number){
+    this._productService.deleteByProductId(productId).subscribe(
+      (resp)=>{
+        this.products = this.products.filter((prod:any)=> prod.productId != productId);
+        this._snackBar.open('Product delete successfully', 'OK', {duration: 3000});
+        this.getAllProducts()
+      },(error)=>{
+        this._snackBar.open(error.message, 'Error delete product', {duration: 3000})
+      }
+    )
   }
 
 }

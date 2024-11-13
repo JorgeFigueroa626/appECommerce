@@ -13,8 +13,10 @@ import { PostCouponComponent } from './post-coupon/post-coupon.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PostProductFaqComponent } from './post-product-faq/post-product-faq.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
-import { AnalitysComponent } from './analitys/analitys.component';
-import { OrderByStatusComponent } from './analitys/order-by-status/order-by-status.component';
+import { AnalityComponent } from './anality/anality.component';
+import { OrderByStatusComponent } from './anality/order-by-status/order-by-status.component';
+import { CategoryManagerComponent } from './category/category-manager/category-manager.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 
 @NgModule({
@@ -27,8 +29,10 @@ import { OrderByStatusComponent } from './analitys/order-by-status/order-by-stat
     OrdersComponent,
     PostProductFaqComponent,
     UpdateProductComponent,
-    AnalitysComponent,
-    OrderByStatusComponent
+    AnalityComponent,
+    OrderByStatusComponent,
+    CategoryManagerComponent,
+    CategoryListComponent
   ],
   imports: [
     CommonModule,

@@ -8,18 +8,24 @@ import { PostCouponComponent } from './post-coupon/post-coupon.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PostProductFaqComponent } from './post-product-faq/post-product-faq.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
-import { AnalitysComponent } from './analitys/analitys.component';
+import { AnalityComponent } from './anality/anality.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryManagerComponent } from './category/category-manager/category-manager.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'category', component: CategoryComponent},
+  // { path: 'category', component: CategoryComponent},
+
+  { path: 'category-list', component: CategoryListComponent},
+  { path: 'category/:categoryId', component: CategoryManagerComponent},
+  
   { path: 'product', component: ProductComponent},
   { path: 'product/:productId', component: UpdateProductComponent},
   { path: 'post-coupon', component: PostCouponComponent},
   { path: 'coupons', component: CouponComponent},
   { path: 'orders', component: OrdersComponent},
   { path: 'faq/:productId', component: PostProductFaqComponent},
-  { path: 'analytics', component: AnalitysComponent},
+  { path: 'analytics', component: AnalityComponent},
 ];
 
 @NgModule({

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { CategoryManagerComponent } from '../category-manager/category-manager.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss']
 })
-export class CategoryComponent implements OnInit{
+export class CategoryListComponent {
+
   
   categoryForm!:FormGroup;
   categories:any[]=[];
@@ -19,7 +21,8 @@ export class CategoryComponent implements OnInit{
     private _fb:FormBuilder,
     private _router: Router,
     private _categoryService: CategoryService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _dialog:MatDialog
   ){}
 
   ngOnInit(): void {
@@ -28,6 +31,15 @@ export class CategoryComponent implements OnInit{
       descriptions: [null, [Validators.required]]
     });
     this.getAllCategories();
+  }
+
+  openDialog(category?:any) {
+    const dialogRef = this._dialog.open(CategoryManagerComponent, {
+      width: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   addCategory(){
@@ -54,6 +66,7 @@ export class CategoryComponent implements OnInit{
   updateByCategoryId(categoryId:number){
     this._categoryService.updateByCategoryId(categoryId, this.categoryForm.value).subscribe(
       (resp) =>{
+        //this.openDialog(this.categoryForm.value)
         this._snackBar.open('Update category successfully', 'OK', {duration: 3000});
         this.getAllCategories();
       },
@@ -90,6 +103,5 @@ export class CategoryComponent implements OnInit{
       }
     )
   }
-
 
 }

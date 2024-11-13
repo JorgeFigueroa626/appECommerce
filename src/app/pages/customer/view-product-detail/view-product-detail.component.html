@@ -8,8 +8,8 @@
             <p class="description">{{ product.description }}</p>
             <p class="price">Price : $ {{ product.price }}</p>
             <p class="category">Category : {{ product.categoryName }}
-                <mat-icon class="heart-icon" (click)="addToWishlist()" 
-                        style="cursor: pointer; margin-top: 20px;">favorite_border
+                <mat-icon class="heart-icon"style="cursor: pointer; margin-top: 20px;"
+                        (click)="addToWishlist()">favorite_border
                 </mat-icon>
             </p>
         </div>
@@ -26,15 +26,15 @@
             <div class="review-details">
                 <h2>{{ review.description }}</h2>
                 <div class="details-row">
-                    <p class="rating"> Rating : {{ review.rating }} </p>
-                    <p class="username"> Username : {{ review.username }} </p>
+                    <p class="rating"> Rating : {{ review.rating }} </p><br>
+                    <p class="username"> - Username : {{ review.username }} </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<h1 class="section-heading" *ngIf="FAQS.length > 0">Freqently Asked Question</h1>
+<h1 class="section-heading" *ngIf="FAQS.length > 0">Frequently Asked Question</h1>
     <div  *ngIf="FAQS" class="faq-list">
         <div class="center-container">
             <div *ngFor="let faq of FAQS" class="faq-card">

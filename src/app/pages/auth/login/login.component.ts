@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         if (UserStorageService.isAdminLoggedIn()) {
           this._router.navigateByUrl('admin/dashboard');
           // this._snackBar.open('Login Success', 'Ok', { duration: 5000 });
-        } else if (UserStorageService.isUserLoggetIn()) {
+        } else if (UserStorageService.isUserLoggedIn()) {
           this._router.navigateByUrl('customer/dashboard');
           // this._snackBar.open('Login Success', 'Ok', { duration: 5000 });
         }

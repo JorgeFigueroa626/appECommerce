@@ -13,21 +13,23 @@ export class CustomerService implements OnInit {
 
   ngOnInit(): void {}
 
+  //
   getAllProducts(): Observable<any> {
-    const requestUrl = `${environment.api}${endpoint.GET_ALL_CUSTOMERS}`;
+    const requestUrl = `${environment.api}${endpoint.GET_ALL_PRODUCTS}`;
     return this._http.get(requestUrl, {
       headers: this.createAuthorizationHeader(),
     });
   }
 
+  //
   getAllProductByName(name: string): Observable<any> {
-    const requestUrl = `${environment.api}${endpoint.GET_ALL_CUSTOMER_BY_NAME}${name}`;
+    const requestUrl = `${environment.api}${endpoint.GET_BY_PRODUCT_NAME}${name}`;
     return this._http.get(requestUrl, {
       headers: this.createAuthorizationHeader(),
     });
   }
 
-  addProductToCart(productId: any): Observable<any> {
+  addToCart(productId: any): Observable<any> {
     const cartDto = {
       productId: productId,
       userId: UserStorageService.getUserId(),
@@ -88,7 +90,7 @@ export class CustomerService implements OnInit {
 
   getOrdersByUserId(): Observable<any> {
     const userId = UserStorageService.getUserId();
-    const requestUrl = `${environment.api}${endpoint.GET_MY_ORDERS_BY_USER_ID}/${userId}`;
+    const requestUrl = `${environment.api}${endpoint.GET_MY_ORDERS_BY_USER_ID}${userId}`;
     return this._http.get(requestUrl, {
       headers: this.createAuthorizationHeader(),
     });
@@ -108,8 +110,9 @@ export class CustomerService implements OnInit {
     });
   }
 
+  ///
   getProductDetailById(productId: number): Observable<any> {
-    const requestUrl = `${environment.api}${endpoint.GET_PRODUCT}${productId}`;
+    const requestUrl = `${environment.api}${endpoint.GET_DETAIL_BY_PRODUCT_ID}${productId}`;
     return this._http.get(requestUrl, {
       headers: this.createAuthorizationHeader(),
     });
@@ -130,15 +133,16 @@ export class CustomerService implements OnInit {
     });
   }
 
+  
+  getOrderByTrackingId(trackingId:number):Observable<any>{
+    const requestUrl = `${environment.api}${endpoint.ORDER_BY_TRACKING_ID}${trackingId}`;
+    return this._http.get(requestUrl);
+  }
+ 
   private createAuthorizationHeader(): HttpHeaders {
     return new HttpHeaders().set(
       'Authorization',
       'Bearer ' + UserStorageService.getToken()
     );
-  }
-
-  getOrderByTrackingId(trackingId:number):Observable<any>{
-    const requestUrl = `${environment.api}${endpoint.ORDER_BY_TRACKING_ID}${trackingId}`;
-    return this._http.get(requestUrl);
   }
 }

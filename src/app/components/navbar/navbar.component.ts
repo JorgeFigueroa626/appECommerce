@@ -9,7 +9,7 @@ import { UserStorageService } from 'src/app/pages/auth/storage/user-storage.serv
 })
 export class NavbarComponent  implements OnInit{
 
-  isCustomerLoggedIn: boolean = UserStorageService.isUserLoggetIn();
+  isCustomerLoggedIn: boolean = UserStorageService.isUserLoggedIn();
   isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
 
   constructor(
@@ -18,7 +18,7 @@ export class NavbarComponent  implements OnInit{
 
   ngOnInit(): void {
     this._router.events.subscribe(event => {
-      this.isCustomerLoggedIn = UserStorageService.isUserLoggetIn();
+      this.isCustomerLoggedIn = UserStorageService.isUserLoggedIn();
       this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
     })  
   }

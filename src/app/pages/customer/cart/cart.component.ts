@@ -32,10 +32,10 @@ export class CartComponent implements OnInit {
 
   //////////////////////////////
   getCart() {
-    //this.carItems = [];
+    this.carItems = [];
     this._customerService.getCartByUserId().subscribe((resp) => {
-      // this.order = resp;
-      resp.forEach(element => {
+      this.order = resp;
+      resp.carItems.forEach((element) => {
         element.processedImg = 'data:image/jpg;base64,' + element.returnedImg;
         this.carItems.push(element);
       });

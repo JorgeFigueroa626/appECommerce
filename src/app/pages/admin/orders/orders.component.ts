@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from 'src/app/services/admin.service';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-orders',
@@ -13,6 +14,7 @@ export class OrdersComponent implements OnInit{
 
   constructor(
     private _adminService:AdminService,
+    private _orderService:OrderService,
     private _snackBar:MatSnackBar
   ){}
 
@@ -21,7 +23,7 @@ export class OrdersComponent implements OnInit{
   }
 
   getPlacedOrders(){
-    this._adminService.getPlaceOrders().subscribe(
+    this._orderService.getPlaceOrders().subscribe(
       (data) =>{
         this.orders = data;
         console.log(data);
@@ -31,7 +33,7 @@ export class OrdersComponent implements OnInit{
   }
 
   changeOrderStatus(orderId:number, status:string){
-    this._adminService.chageOrderStatus(orderId, status).subscribe(
+    this._orderService.changeOrderStatus(orderId, status).subscribe(
       rep =>{
         if (rep.id != null) {
           this._snackBar.open('Order status changed successfully', 'OK', {duration:3000});

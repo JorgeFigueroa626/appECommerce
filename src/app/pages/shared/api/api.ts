@@ -1,34 +1,41 @@
 import { HttpHeaders } from '@angular/common/http';
 
 export const endpoint = {
-  //CLIENTE
+
+  //AUTH
   SIGN_UP: '/sign-up',
   AUTHENTICATION: '/authentication',
 
-  ORDER_BY_TRACKING_ID : '/api/order/',
+  ORDER_BY_TRACKING_ID : '/order/',
 
-
-  //CATEGORIA
-  CREATE_CATEGORY: '/api/admin/category',
-  GET_ALL_CATEGORYS: '/api/admin/categorys',
+  //CATEGORY
+  CREATE_CATEGORY: '/api/category',
+  GET_CATEGORY_ID: '/api/category/',
+  GET_ALL_CATEGORIES: '/api/categories',
 
   //PRODUCT
-  CREATE_PRODUCT: '/api/admin/product',
-  GET_ALL_PRODUCTS: '/api/admin/products',
-  GET_BY_PRODUCT_NAME: '/api/admin/product/name/',
-  GET_BY_PRODUCT_ID: '/api/admin/product/',
+  CREATE_PRODUCT: '/api/product',
+  GET_ALL_PRODUCTS: '/api/products',
+  GET_BY_PRODUCT_NAME: '/api/product/name/',
+  GET_BY_PRODUCT_ID: '/api/product/',
 
-  //COUPON
-  CREATE_COUPON: '/api/admin/coupons',
-  GET_COUPON: '/api/admin/coupons',
-
-  //ORDER
-  GET_PLACE_ORDERS: '/api/admin/order/placedOrders',
-  CHANGE_ORDER_STATUS: '/api/admin/order/',
-  GET_ANALYTICS: '/api/admin/order/analytics',
+  GET_DETAIL_BY_PRODUCT_ID: '/api/product/detail/',
 
   //FAQ
-  CREATE_FAQ_BY_PRODUCT_ID: '/api/admin/product/faq/',
+  CREATE_FAQ_BY_PRODUCT_ID: '/api/product/faq/',
+
+  //COUPON
+  CREATE_COUPON: '/api/coupon',
+  GET_COUPON: '/api/coupon',
+  GET_BY_COUPON_ID: '/api/coupon/',
+
+  //ORDER
+  GET_PLACE_ORDERS: '/api/order/placedOrders',
+  CHANGE_ORDER_STATUS: '/api/order/',
+  GET_ANALYTICS: '/api/order/analytics',
+
+  
+
 
   //CUSTOMER
   GET_ALL_CUSTOMERS: '/api/customers',
@@ -42,16 +49,19 @@ export const endpoint = {
   INCREASE_PRODUCT_QUANTITY: '/api/customer/cart/addition',
   DECREASE_PRODUCT_QUANTITY: '/api/customer/cart/decrease',
 
-  PLACE_ORDER: '/api/customer/placeOrder',
-  GET_MY_ORDERS_BY_USER_ID: '/api/customer/myOrders',
-  GET_MY_ORDERED_PRODUCTS: '/api/customer/ordered-products/',
+  PLACE_ORDER: '/api/customer/cart/placeOrder',
+  GET_MY_ORDERS_BY_USER_ID: '/api/customer/myOrders/',
 
-  GIVE_REVIEW: '/api/customer/review',
+  //REVIEW
+  GET_MY_ORDERED_PRODUCTS: '/api/ordered-products/',
+  GIVE_REVIEW: '/api/review',
 
+  //XX
   GET_PRODUCT: '/api/customers/product/',
 
-  ADD_PRODUCT_TO_WISHLIST: '/api/customer/wishlist',
-  GET_WISHLIST_BY_USER_ID: '/api/customer/wishlist/',
+  //WISHLIST
+  ADD_PRODUCT_TO_WISHLIST: '/api/wishlist',
+  GET_WISHLIST_BY_USER_ID: '/api/wishlist/',
 
   
 

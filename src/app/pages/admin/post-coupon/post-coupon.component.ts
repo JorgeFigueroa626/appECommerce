@@ -8,6 +8,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-post-coupon',
@@ -21,7 +22,8 @@ export class PostCouponComponent implements OnInit {
     private _fb: FormBuilder,
     private _router: Router,
     private _snackBar: MatSnackBar,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private _couponService:CouponService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class PostCouponComponent implements OnInit {
 
   addCoupon() {
     if (this.couponForm.valid) {
-      this._adminService.addCoupons(this.couponForm.value).subscribe((data) => {
+      this._couponService.addCoupons(this.couponForm.value).subscribe((data) => {
         if (data.id != null) {
           this._snackBar.open('Coupon Posted Successfully.', 'OK', {
             duration: 3000,

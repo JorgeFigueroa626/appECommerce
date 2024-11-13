@@ -44,7 +44,7 @@ export class ReviewOrderedProductComponent implements OnInit {
     reader.readAsDataURL(this.selectedFile);
   }
 
-  sumbitForm() {
+  submitForm() {
     const formData: FormData = new FormData();
     formData.append('img', this.selectedFile);
     formData.append('productId', this.productId.toString());
@@ -65,4 +65,27 @@ export class ReviewOrderedProductComponent implements OnInit {
       }
     });
   }
+
+  // submitForm() {
+  //   const formData: FormData = new FormData();
+  //   formData.append('img', this.selectedFile);
+  //   formData.append('productId', this.productId.toString());
+  //   formData.append('userId', UserStorageService.getUserId().toString());
+  //   formData.append('rating', this.reviewForm.get('rating').value);
+  //   formData.append('description', this.reviewForm.get('description').value);
+
+  //   this.customerService.giveReview(formData).subscribe(
+  //     (resp) => {
+  //       this.snackBar.open('Review Posted Successfully!', 'OK', {
+  //         duration: 3000,
+  //       });
+  //       this.router.navigateByUrl('/customer/my_orders');
+  //     },
+  //     (error)=> {
+  //      this.snackBar.open('Something went wrong!', 'ERROR', {
+  //        duration: 3000,
+  //       });
+  //     }, 
+  //   );
+  // }
 }

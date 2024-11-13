@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-update-product',
@@ -14,7 +16,7 @@ export class UpdateProductComponent implements OnInit{
   
   productId = this._route.snapshot.params['productId'];
   productForm!:FormGroup;
-  categorys: any = [];
+  categories: any = [];
   selectFile:File | null;
   imagePreview: string | ArrayBuffer | null;
 
@@ -26,19 +28,21 @@ export class UpdateProductComponent implements OnInit{
     private _router:Router,
     private _snackBar:MatSnackBar,
     private _adminService: AdminService,
+    private _categoryService: CategoryService,
+    private _productService: ProductService,
     private _route:ActivatedRoute
 
   ){}
 
   onFileSelected(event:any){
     this.selectFile = event.target.files[0];
-    this.previewImagen();
+    this.previewImage();
 
     this.imgChanged = true;
     this.existingImage = null;
   }
 
-  previewImagen(){
+  previewImage(){
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result;
@@ -54,20 +58,20 @@ export class UpdateProductComponent implements OnInit{
       description: [null, [Validators.required]]
     });
 
-    this.getAllCategorys();
+    this.getAllCategories();
     this.getByProductId();
   }
 
-  getAllCategorys(){
-    this._adminService.getAllCategorys().subscribe(
+  getAllCategories(){
+    this._categoryService.getAllCategories().subscribe(
       (data)=> {
-        this.categorys = data;
+        this.categories = data;
       }
     )
   }
 
   getByProductId(){
-    this._adminService.getByProductId(this.productId).subscribe(
+    this._productService.getByProductId(this.productId).subscribe(
       (resp) => {
         this.productForm.patchValue(resp);
         this.existingImage = 'data:image/jpg;base64,' + resp.byteImg;
@@ -88,7 +92,7 @@ export class UpdateProductComponent implements OnInit{
       formData.append('description', this.productForm.get('description').value);
       formData.append('price', this.productForm.get('price').value);
 
-      this._adminService.updateProductId(this.productId, formData).subscribe(
+      this._productService.updateProductId(this.productId, formData).subscribe(
         (data) => {
           if (data.id != null) {
             this._snackBar.open('Product update Successfully', 'OK',{duration: 3000});

@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
     const confirmPassword = this.signupForm.get('confirmPassword')?.value;
 
     if (password !== confirmPassword) {
-      this._snackBar.open('Plassword do not match.', 'Close', {duration: 3000, panelClass: 'error-snackbar'})
+      this._snackBar.open('Password do not match.', 'Close', {duration: 3000, panelClass: 'error-snackbar'})
       return;
     }
 
