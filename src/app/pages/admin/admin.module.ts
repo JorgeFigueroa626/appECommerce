@@ -17,6 +17,7 @@ import { AnalityComponent } from './anality/anality.component';
 import { OrderByStatusComponent } from './anality/order-by-status/order-by-status.component';
 import { CategoryManagerComponent } from './category/category-manager/category-manager.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     AnalityComponent,
     OrderByStatusComponent,
     CategoryManagerComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,9 @@
 .container-manager{
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 90px;
+    padding: 30px;
+    flex-direction: column; 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
 
     h2{
         text-align: center;

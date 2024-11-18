@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
@@ -23,7 +24,8 @@ export class PostCouponComponent implements OnInit {
     private _router: Router,
     private _snackBar: MatSnackBar,
     private _adminService: AdminService,
-    private _couponService:CouponService
+    private _couponService:CouponService,
+    private _dialog: MatDialogRef<PostCouponComponent>
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class PostCouponComponent implements OnInit {
           this._snackBar.open('Coupon Posted Successfully.', 'OK', {
             duration: 3000,
           });
-          this._router.navigateByUrl('/admin/dashboard');
+          this._router.navigateByUrl('/admin/coupons');
         } else {
           this._snackBar.open(data.message, 'Close', {
             duration: 3000,
@@ -53,5 +55,9 @@ export class PostCouponComponent implements OnInit {
     } else {
       this.couponForm.markAllAsTouched();
     }
+  }
+
+  closeDialog(){
+    this._dialog.close()
   }
 }

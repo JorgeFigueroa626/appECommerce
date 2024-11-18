@@ -1,4 +1,16 @@
 <div class="container" style="padding: 30px;">
+
+    <div class="manager">
+        <mat-form-field appearance="outline" class="search-input">
+            <mat-label>Search Category</mat-label>
+            <input matInput>
+            <button mat-button matSuffix color="primary" [disabled]="couponForm.invalid">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button type="button" color="primary" (click)="openDialog()" class="add-button">Add</button>
+    </div>
+
     <mat-card>
         <mat-card-content>
 
@@ -47,7 +59,7 @@
 
 
 
-
+<!-- 
 <div class="container-manager">
     <h2>Add Coupon</h2>
 
@@ -83,4 +95,4 @@
         <button mat-raised-button color="primary" type="submit">Add Coupon</button>
 
     </form>
-</div>
+</div> -->

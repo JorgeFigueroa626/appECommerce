@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { CouponService } from 'src/app/services/coupon.service';
+import { PostCouponComponent } from '../post-coupon/post-coupon.component';
 
 @Component({
   selector: 'app-coupon',
@@ -21,7 +23,8 @@ export class CouponComponent implements OnInit{
     private _router: Router,
     private _snackBar: MatSnackBar,
     private _adminService: AdminService,
-    private _couponService: CouponService
+    private _couponService: CouponService,
+    private _dialog:MatDialog
   ){}
 
 
@@ -35,6 +38,15 @@ export class CouponComponent implements OnInit{
     this.getAllCoupons();
   }
 
+  openDialog() {
+    const dialogRef = this._dialog.open(PostCouponComponent, {
+      width: '30%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
   addCoupon() {
     if (this.couponForm.valid) {
       this._couponService.addCoupons(this.couponForm.value).subscribe((data) => {
@@ -42,7 +54,9 @@ export class CouponComponent implements OnInit{
           this._snackBar.open('Coupon Posted Successfully.', 'OK', {
             duration: 3000,
           });
-          this._router.navigateByUrl('/admin/dashboard');
+          this.closeDialog();
+          this.getAllCoupons();
+          //this._router.navigateByUrl('/admin/dashboard');
         } else {
           this._snackBar.open(data.message, 'Close', {
             duration: 3000,
@@ -54,6 +68,11 @@ export class CouponComponent implements OnInit{
       this.couponForm.markAllAsTouched();
     }
   }
+
+  closeDialog(){
+    this._dialog.closeAll()
+  }
+  
 
   getAllCoupons(){
     this._couponService.getAllCoupons().subscribe(

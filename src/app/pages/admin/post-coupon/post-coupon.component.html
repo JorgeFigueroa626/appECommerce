@@ -1,6 +1,4 @@
 
-
-
 <div class="container-manager">
     <h2>Add Coupon</h2>
 
@@ -33,7 +31,10 @@
             <mat-error *ngIf="couponForm.get('expirationDate')?.hasError('required')">This input is required</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit">Add Coupon</button>
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit">Add Coupon</button>
+            <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
+        </div>
 
     </form>
 </div>

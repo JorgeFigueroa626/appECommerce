@@ -46,7 +46,8 @@ export class CategoryManagerComponent {
               duration: 3000
             })
             this.closeDialog();
-            this._router.navigateByUrl('/admin/category-list')
+            this.getAllCategories();
+            //this._router.navigateByUrl('/admin/category-list')
           } else {
             this._snackBar.open(data.message, 'Close', {
               duration: 3000, panelClass: 'error-snackbar'

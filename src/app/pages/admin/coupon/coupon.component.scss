@@ -1,8 +1,31 @@
 
 .container{
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
+    padding: 30px;
+    flex-direction: column; 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+
+.manager {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    gap: 5px; 
+    width: 100%;
+}
+
+.add-button {
+    min-width: 120px; 
+    max-width: 150px; 
+}
+
+
+.search-input {
+    flex-grow: 1; 
+    max-width: 600px; 
+    width: 100%; 
 }
 
 mat-card{
@@ -13,6 +36,7 @@ mat-card{
 
 table{
     width: 100%;
+    border-collapse: collapse;
 }
 
 th.mat-header-cell{

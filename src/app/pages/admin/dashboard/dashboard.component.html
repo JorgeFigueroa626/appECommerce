@@ -7,7 +7,7 @@
             </button>
     </mat-form-field>
 </form>
-
+<!-- 
 <div class="product-list">
 
     <mat-card class="product-card" *ngFor="let product of products">
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <mat-divider></mat-divider>
+            <mat-divider></mat-divider><br>
             <div class="actions">
                 <button class="update-button" mat-raised-button color="primary" [routerLink]="'/admin/faq/'+product.id">FAQ</button>
                 <button class="update-button" mat-raised-button color="accent" [routerLink]="'/admin/product/'+product.id">Update</button>
@@ -41,4 +41,54 @@
             
         </div>
     </mat-card>
+</div> -->
+
+<div class="main-container">
+    <!-- Sección de Categorías -->
+    <mat-card class="category-card">
+        <mat-card-header>
+            <mat-card-title>Categories</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="category-list">
+                <mat-chip *ngFor="let category of categories" class="category-chip">
+                    {{ category.name }}
+                </mat-chip>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    
+
+    <!-- Sección de Productos -->
+    <div class="product-list">
+        <mat-card class="product-card" *ngFor="let product of products">
+            <div class="product-image">
+                <img [src]="product.processedImg" alt="product-image">
+            </div>
+
+            <div class="product-details">
+                <h2 class="product-name">{{ product.name }}</h2>
+                <p class="product-description">{{ product.description }}</p>
+
+                <mat-divider></mat-divider>
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">Price:</span>
+                        <span class="info-value">{{ product.price | currency }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Category:</span>
+                        <span class="info-value">{{ product.categoryName }}</span>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="actions">
+                    <button class="update-button" mat-raised-button color="primary" [routerLink]="'/admin/faq/'+product.id">FAQ</button>
+                    <button class="update-button" mat-raised-button color="accent" [routerLink]="'/admin/product/'+product.id">Update</button>
+                    <button class="delete-button" mat-raised-button color="warn" (click)="deleteByProductId(product.id)">Delete</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>

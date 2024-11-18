@@ -11,6 +11,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import { AnalityComponent } from './anality/anality.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryManagerComponent } from './category/category-manager/category-manager.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
@@ -19,8 +20,10 @@ const routes: Routes = [
   { path: 'category-list', component: CategoryListComponent},
   { path: 'category/:categoryId', component: CategoryManagerComponent},
   
+  { path: 'product-list', component: ProductListComponent},
   { path: 'product', component: ProductComponent},
   { path: 'product/:productId', component: UpdateProductComponent},
+  
   { path: 'post-coupon', component: PostCouponComponent},
   { path: 'coupons', component: CouponComponent},
   { path: 'orders', component: OrdersComponent},

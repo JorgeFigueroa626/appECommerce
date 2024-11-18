@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from 'src/app/services/admin.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,17 +12,20 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DashboardComponent implements OnInit {
   products: any[] = [];
+  categories: any[] = [];
   searchProductForm!: FormGroup;
 
   constructor(
     private _adminService: AdminService,
     private _productService: ProductService,
+    private _categoryService: CategoryService,
     private _fb: FormBuilder,
     private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.getAllProducts(), 
+    this.getAllCategories();
     this.searchProductForm = this._fb.group({
       title: [null, [Validators.required]],
     });
@@ -48,6 +52,14 @@ export class DashboardComponent implements OnInit {
         //console.log(element);
       });
     });
+  }
+
+  getAllCategories(){
+    this._categoryService.getAllCategories().subscribe(
+      (resp)=>{
+        this.categories = resp;
+      }
+    )
   }
 
   deleteByProductId(productId: number) {
