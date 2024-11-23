@@ -12,6 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrackingOrderComponent } from './components/tracking-order/tracking-order.component';
 
+//firebase
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 @NgModule({
   declarations: [
@@ -26,13 +32,17 @@ import { TrackingOrderComponent } from './components/tracking-order/tracking-ord
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    
+
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
 
+    //Modulo para usa Firebase en Angular
+    AngularFireModule.initializeApp(environment.firebase.config),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

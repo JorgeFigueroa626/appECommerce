@@ -6,7 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/app/material-module';
-import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { CouponComponent } from './coupon/coupon.component';
 import { PostCouponComponent } from './post-coupon/post-coupon.component';
@@ -23,7 +22,6 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 @NgModule({
   declarations: [
     DashboardComponent,
-    CategoryComponent,
     ProductComponent,
     CouponComponent,
     PostCouponComponent,

@@ -20,8 +20,17 @@
             </mat-error>
         </mat-form-field>
 
+        <div class="file-upload-container">
+            <h5 class="file-upload-title">Upload image</h5>
+            <input type="file" accept=".png, .jpg" (change)="onFileSelected($event)" class="file-input">
+            <div *ngIf="percentage$" class="progress-container">
+                <mat-progress-bar  mode="determinate" [value]="(percentage$ | async) || 0" max="100" class="progress-bar"></mat-progress-bar>
+                {{ (percentage$ | async) }} %
+            </div>
+        </div><br>
+
         <div mat-dialog-actions>
-            <button mat-raised-button color="primary" type="submit">Add Category</button>
+            <button mat-raised-button color="primary" [disabled]="categoryForm.invalid" type="submit">Add Category</button>
             <button mat-raised-button color="warn" (click)="closeDialog()">Close</button>
         </div>
     </form>

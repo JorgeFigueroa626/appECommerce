@@ -25,6 +25,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   exports: [
@@ -49,6 +50,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatProgressBarModule,
     MatChipsModule,
     MatSnackBarModule,
     MatFormFieldModule,
